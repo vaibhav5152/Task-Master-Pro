@@ -48,7 +48,7 @@ jobs:
         docker build -t vaibhav5252/dev-task-master:latest .
 
     - name: Trivy fs scan
-      run: sudo trivy image --format table -o image.html vaibhav5252/dev-task-master:latest    
+      run: trivy image --format table -o image.html vaibhav5252/dev-task-master:latest    
     
     - name: Push Docker Image
       run: |
