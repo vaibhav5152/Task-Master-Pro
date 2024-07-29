@@ -37,18 +37,18 @@ jobs:
     -  name: Set up Docker Buildx
        uses: docker/setup-buildx-action@v3
 
-    - name: Docker build Image
-      run: |
-        docker build -t vaibhav5252/dev-task-master:latest .
-
-    - name: Trivy fs scan
-      run: trivy image --format table -o image.html vaibhav5252/dev-task-master:latest    
-      
     - name: Login to Docker Hub
       uses: docker/login-action@v3
       with:
         username: ${{ secrets.DOCKERHUB_USERNAME }}
         password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Docker build Image
+      run: |
+        docker build -t vaibhav5252/dev-task-master:latest .
+
+    - name: Trivy fs scan
+      run: sudo trivy image --format table -o image.html vaibhav5252/dev-task-master:latest    
     
     - name: Push Docker Image
       run: |
